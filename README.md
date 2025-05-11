@@ -29,17 +29,17 @@ a wide range of microcontrollers such as STM32, AVR, ESP32, and more.
 ## SETUP DRIVER TUTORIAL
 **Important: Ensure the I2C peripheral in raspi-config is enabled before proceeding with the following steps.
 
-Step 1: Go to /boot directory in your RaspberryPi
-Step 2: Check the .dtb file located in /boot. (Make sure that the filename matches the model/version of your Raspberry Pi.)
-Step 3: Run this command on terminal: sudo dtc -I dtb -O dts -o bcm2710-rpi-zero-2-w.dts bcm2710-rpi-zero-2-w.dtb . This action will create a .dts file
-Step 4: Open the .dts file, scroll until see aliase, find the i2c1 . Then copy numbers next to it. CTR + F and find the numbers. You'll be send to i2c1 node defination.
-Step 5: Add the following script into i2c1 node (Add it before the };):
+-Step 1: Go to /boot directory in your RaspberryPi
+-Step 2: Check the .dtb file located in /boot. (Make sure that the filename matches the model/version of your Raspberry Pi.)
+-Step 3: Run this command on terminal: sudo dtc -I dtb -O dts -o bcm2710-rpi-zero-2-w.dts bcm2710-rpi-zero-2-w.dtb . This action will create a .dts file
+-Step 4: Open the .dts file, scroll until see aliase, find the i2c1 . Then copy numbers next to it. CTR + F and find the numbers. You'll be send to i2c1 node defination.
+-Step 5: Add the following script into i2c1 node (Add it before the };):
         bmp180@77 {
             compatible = "bosch,bmp180";
             reg = <0x77>; // I2C address
         };
-Step 6: Save the .dts file and compile it back to .dtb by run : sudo dtc -I dts -O dtb -o bcm2710-rpi-zero-2-w.dtb bcm2710-rpi-zero-2-w.dts
-Step 7: cd into the directory contain file driver and Makefile
+-Step 6: Save the .dts file and compile it back to .dtb by run : sudo dtc -I dts -O dtb -o bcm2710-rpi-zero-2-w.dtb bcm2710-rpi-zero-2-w.dts
+-Step 7: cd into the directory contain file driver and Makefile
 Step 8: Run this command on terminal: make
 
 **Congratuation, BMP180_driver is ready for use!
