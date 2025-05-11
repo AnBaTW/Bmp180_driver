@@ -1,7 +1,9 @@
-obj-m += hello_driver.o
+obj-m += bmp180_driver.o
 KDIR = /lib/modules/$(shell uname -r)/build
 
-all:
+all: bmp180_driver.ko
 	make -C $(KDIR) M=$(shell pwd) modules
-clean: 
+	sudo insmod bmp180_driver.ko
+clean: bmp180_driver.ko
 	make -C $(KDIR) M=$(shell pwd) clean
+	sudo rmmod bmp180_driver.ko

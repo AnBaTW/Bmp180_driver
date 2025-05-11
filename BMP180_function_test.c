@@ -156,7 +156,7 @@ int main(){
     BMP180_read(2);
     //calculate the alitude
     A = 44330*(1-pow((P/(101325)),1/5.255));
-    printf("\rPress %lf Pa, Temp: %lf C, alitute: %lf",P,T,A);
+    printf("\rPress %lf Pa, Temp: %lf C, alitute: %lf ",P,T,A);
     fflush(stdout);
     usleep(100000);
     }
